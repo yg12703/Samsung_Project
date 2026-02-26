@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* ================= FEATURES SECTION ================= */
+
+.features-section{
+    padding:80px 5%;
+    text-align:center;
+    background: linear-gradient(90deg,#ff6a88,#ff8c42);
+    color:white;
+}
+
+.features-section h2{
+    font-size:36px;
+    margin-bottom:50px;
+}
+
+/* Container */
+.features-container{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:30px;
+}
+
+/* Cards */
+.feature-card{
+    background: rgba(255,255,255,0.15);
+    padding:30px 25px;
+    border-radius:20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: all 0.4s ease;
+}
+
+.feature-card:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
+/* Icon */
+.icon{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+/* Title */
+.feature-card h3{
+    margin-bottom:15px;
+    font-size:20px;
+}
+
+/* Text */
+.feature-card p{
+    font-size:15px;
+    opacity:0.9;
+    line-height:1.6;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media(max-width: 992px){
+    .features-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+@media(max-width: 600px){
+    .features-container{
+        grid-template-columns: 1fr;
+    }
+
+    .features-section h2{
+        font-size:28px;
+    }
+}
+
+/* ================= TOOLS SECTION ================= */
+
+.tools-section{
+    padding:10px 5%;
+    text-align:center;
+    background: linear-gradient(90deg,#ff6a88,#ff8c42);
+    color:white;
+}
+
+.tools-section h2{
+    font-size:36px;
+    margin-bottom:50px;
+}
+
+/* Grid Layout */
+.tools-container{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:30px;
+}
+
+/* Card Design */
+.tool-card{
+    background: rgba(255,255,255,0.15);
+    padding:30px 25px;
+    border-radius:20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: all 0.4s ease;
+}
+
+.tool-card:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
+/* Icon */
+.tool-card .icon{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+/* Title */
+.tool-card h3{
+    margin-bottom:15px;
+    font-size:20px;
+}
+
+/* Text */
+.tool-card p{
+    font-size:15px;
+    opacity:0.9;
+    line-height:1.6;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media(max-width: 992px){
+    .tools-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+@media(max-width: 600px){
+    .tools-container{
+        grid-template-columns: 1fr;
+    }
+
+    .tools-section h2{
+        font-size:28px;
+    }
+}
+
+
+/* ================= PROJECT IMPORTANCE ================= */
+
+.importance-section{
+    padding:80px 5%;
+    text-align:center;
+    background: linear-gradient(90deg,#ff6a88,#ff8c42);
+    color:white;
+}
+
+.importance-section h2{
+    font-size:36px;
+    margin-bottom:50px;
+}
+
+/* Grid Layout */
+.importance-container{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:30px;
+}
+
+/* Cards */
+.importance-card{
+    background: rgba(255,255,255,0.15);
+    padding:30px 25px;
+    border-radius:20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: all 0.4s ease;
+}
+
+.importance-card:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
+/* Icon */
+.importance-card .icon{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+/* Title */
+.importance-card h3{
+    margin-bottom:15px;
+    font-size:20px;
+}
+
+/* Text */
+.importance-card p{
+    font-size:15px;
+    opacity:0.9;
+    line-height:1.6;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media(max-width: 992px){
+    .importance-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+@media(max-width: 600px){
+    .importance-container{
+        grid-template-columns: 1fr;
+    }
+
+    .importance-section h2{
+        font-size:28px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <section class="features-section">
+    <h2>✨ Project Features</h2>
+
+    <div class="features-container">
+
+        <div class="feature-card">
+            <div class="icon">🚦</div>
+            <h3>Dynamic Signal Control</h3>
+            <p>
+                Automatically adjusts green light duration based on real-time 
+                vehicle density, reducing unnecessary waiting times.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🚑</div>
+            <h3>Ambulance Priority</h3>
+            <p>
+                Detects emergency vehicles and provides an immediate green light 
+                corridor to reduce response times and save lives.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🖥️</div>
+            <h3>Live Dashboard</h3>
+            <p>
+                Monitor up to four lanes simultaneously with real-time video 
+                feeds, vehicle detection boxes, and traffic light status.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">📊</div>
+            <h3>Data Analytics</h3>
+            <p>
+                View detailed graphs on vehicle flow, lane density, and 
+                system efficiency compared to traditional methods.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="tools-section">
+    <h2>🔧 Tools & Technology</h2>
+
+    <div class="tools-container">
+
+        <div class="tool-card">
+            <div class="icon">🐍</div>
+            <h3>Python & Flask</h3>
+            <p>
+                The backend is powered by Python with the robust and 
+                lightweight Flask web framework.
+            </p>
+        </div>
+
+        <div class="tool-card">
+            <div class="icon">🤖</div>
+            <h3>YOLOv8 & OpenCV</h3>
+            <p>
+                State-of-the-art object detection using YOLOv8 and 
+                real-time video processing with OpenCV.
+            </p>
+        </div>
+
+        <div class="tool-card">
+            <div class="icon">🌐</div>
+            <h3>HTML, CSS, JS</h3>
+            <p>
+                A responsive and interactive frontend built with 
+                standard web technologies.
+            </p>
+        </div>
+
+        <div class="tool-card">
+            <div class="icon">📈</div>
+            <h3>Chart.js</h3>
+            <p>
+                Beautiful and dynamic charts for the analysis 
+                dashboard are rendered using Chart.js.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="importance-section">
+    <h2>💡 Project Importance</h2>
+
+    <div class="importance-container">
+
+        <div class="importance-card">
+            <div class="icon">🚦</div>
+            <h3>Reduces Traffic Congestion</h3>
+            <p>
+                Optimizes signal timing using real-time data to reduce
+                unnecessary vehicle waiting and traffic build-up.
+            </p>
+        </div>
+
+        <div class="importance-card">
+            <div class="icon">🚑</div>
+            <h3>Faster Emergency Response</h3>
+            <p>
+                Provides priority green signals for ambulances,
+                helping save lives by reducing response time.
+            </p>
+        </div>
+
+        <div class="importance-card">
+            <div class="icon">🌍</div>
+            <h3>Environmental Impact</h3>
+            <p>
+                Minimizes fuel consumption and reduces carbon emissions
+                by preventing long idle times at traffic signals.
+            </p>
+        </div>
+
+        <div class="importance-card">
+            <div class="icon">📊</div>
+            <h3>Smart City Integration</h3>
+            <p>
+                Supports modern smart city infrastructure by enabling
+                intelligent traffic monitoring and data-driven decisions.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>

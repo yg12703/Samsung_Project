@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITMS Dashboard</title>
+
+<style>
+/* Reset */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+}
+
+/* ================= NAVBAR ================= */
+.navbar{
+    background:#2d2a63;
+    color:white;
+    padding:15px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+.navbar h2{
+    font-weight:600;
+    font-size:22px;
+}
+
+.navbar span{
+    font-size:14px;
+    opacity:0.9;
+}
+
+/* ================= HERO ================= */
+.hero{
+    position:relative;
+    min-height:80vh;
+    background: linear-gradient(90deg,#6a11cb,#b06ab3,#ff8c00);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    padding:40px 20px;
+    overflow:hidden;
+}
+
+.hero h1{
+    font-size:clamp(28px, 5vw, 48px);
+    margin-bottom:15px;
+}
+
+.hero p{
+    max-width:600px;
+    font-size:clamp(14px, 2.5vw, 18px);
+    margin-bottom:30px;
+    opacity:0.9;
+}
+
+/* ================= BUTTONS ================= */
+.btn-group{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.btn{
+    padding:12px 28px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s ease;
+    min-width:140px;
+}
+
+.btn-project{
+    background:#6a11cb;
+    color:white;
+}
+
+.btn-project:hover{
+    background:#5411a5;
+}
+
+.btn-logout{
+    background:#ffb347;
+    color:#333;
+    font-weight:600;
+}
+
+.btn-logout:hover{
+    background:#ffa000;
+}
+
+/* ================= WAVE ================= */
+.wave{
+    position:absolute;
+    bottom:-1px;
+    width:100%;
+}
+
+.wave svg{
+    width:100%;
+    height:120px;
+}
+
+/* ================= FEATURES ================= */
+.features{
+    padding:60px 20px;
+    text-align:center;
+    background: linear-gradient(90deg,#ff758c,#ff7eb3,#ff8c42);
+    color:white;
+}
+
+.features h2{
+    font-size:clamp(22px,4vw,36px);
+    margin-bottom:20px;
+}
+
+.features p{
+    max-width:600px;
+    margin:auto;
+    font-size:clamp(14px,2.5vw,16px);
+    opacity:0.9;
+}
+
+/* ================= MEDIA QUERIES ================= */
+
+/* Tablet */
+@media (max-width: 992px){
+    .hero{
+        min-height:70vh;
+    }
+}
+
+/* Mobile */
+@media (max-width: 1440px){
+    .btn-group{
+        margin: 20px 0 80px 0;
+    }
+}
+@media (max-width: 1024px){
+    .btn-group{
+        margin: 20px 0 80px 0;
+    }
+}
+@media (max-width: 768px){
+
+    .navbar{
+        flex-direction:column;
+        text-align:center;
+        gap:8px;
+    }
+
+    .hero{
+        min-height:65vh;
+        padding:30px 15px;
+    }
+
+    .btn-group{
+        display:flex;
+        gap:15px;
+        width:100%;
+        margin: 10px 0px 50px 0;
+    }
+
+    .btn{
+        width:100%;
+        max-width:200px;
+    }
+
+    .wave svg{
+        height:90px;
+    }
+}
+
+/* Small Phones */
+@media (max-width: 480px){
+
+    .hero{
+        min-height:60vh;
+    }
+
+    .wave svg{
+        height:70px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <h2>ITMS</h2>
+    <span>Welcome, traffic-admin</span>
+</div>
+
+<!-- Hero Section -->
+<section class="hero">
+    <h1>ITMS Dashboard</h1>
+    <p>
+        Manage live traffic feeds, view real-time analytics,
+        and oversee the intelligent traffic control system.
+    </p>
+
+    <div class="btn-group">
+        <button class="btn btn-project">View Project</button>
+        <button class="btn btn-logout">Logout</button>
+    </div>
+
+    <!-- Wave -->
+    <div class="wave">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#3c1b6e"
+            d="M0,160L80,165.3C160,171,320,181,480,176C640,171,800,149,960,144C1120,139,1280,149,1360,154.7L1440,160L1440,320L0,320Z">
+            </path>
+        </svg>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <h2>✨ Project Features</h2>
+    <p>
+        Real-time traffic monitoring, smart signal control,
+        congestion analysis, and automated incident detection.
+    </p>
+</section>
+
+</body>
+</html>
