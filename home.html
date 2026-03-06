@@ -5,108 +5,243 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Smart Traffic Management System</title>
 
+<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+<!-- bootstrap link -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 
+/* ================= GLOBAL ================= */
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-scroll-behavior:smooth;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
 }
 
 body{
-background:#f4f6fc;
-overflow-x:hidden;
+    background:#f4f6fc;
+    overflow-x:hidden;
 }
 
-/* NAVBAR */
-
+/* ================= NAVBAR ================= */
 .navbar{
-background:#2d2a63;
+    position:fixed;
+    width:100%;
+    top:0;
+    background:#2d2a63;
+    color:white;
+    padding:15px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:1000;
 }
 
-.navbar-brand span{
-font-weight:600;
-margin-left:10px;
+.navbar h2{
+    font-weight:600;
 }
 
-/* HERO */
+.navbar ul{
+    list-style:none;
+    display:flex;
+    gap:25px;
+}
 
-.hero{
-height:80vh;
-background:linear-gradient(120deg,#6a11cb,#b06ab3,#ff8c00);
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
+.navbar ul li{
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.navbar ul li:hover{
+    color:#ffb347;
+}
+
+/* ===== HAMBURGER ===== */
+.menu-toggle{
+    display:none;
+    font-size:26px;
+    cursor:pointer;
+}
+
+/* Carousel */
+
+.carousel-item{
+height:650px;
+background-size:cover;
+background-position:center;
+position:relative;
+}
+
+.overlay{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.55);
+}
+
+.carousel-content{
+position:absolute;
+top:50%;
+left:10%;
+transform:translateY(-50%);
 color:white;
+max-width:500px;
 }
 
-.hero h1{
-font-size:50px;
+.carousel-content h1{
+font-size:48px;
+font-weight:bold;
 margin-bottom:20px;
 }
 
+.search-box{
+display:flex;
+margin-bottom:20px;
+}
+
+.search-box input{
+border:none;
+padding:12px;
+width:250px;
+}
+
+.search-box button{
+background:#00a8ff;
+border:none;
+color:white;
+padding:12px 20px;
+}
+
+.btn-secondary-custom{
+background:#0b0c5a;
+border:none;
+color:white;
+}
+
+/* ================= HERO ================= */
+.hero{
+    height:80vh;
+    background:linear-gradient(120deg,#6a11cb,#b06ab3,#ff8c00);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:clamp(30px,5vw,50px);
+    margin-bottom:20px;
+}
+
 .hero p{
-max-width:600px;
-margin-bottom:25px;
+    max-width:600px;
+    font-size:clamp(14px,2vw,18px);
+    margin-bottom:30px;
+}
+
+.btn{
+    padding:12px 28px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+    margin:5px;
+    transition:0.3s;
 }
 
 .btn-primary{
-background:#6a11cb;
-border:none;
+    font-weight:600;
+}
+button.btn.btn-primary {
+    background: #6a11cb;
+    color: white;
+}
+
+button.btn.btn-primary:hover{
+    background:#5411a5;
 }
 
 .btn-secondary{
-background:#ffb347;
-border:none;
+    background:#ffb347;
+    color:#333;
 }
 
-/* SECTIONS */
+.btn-secondary:hover{
+    background:#ffa000;
+}
 
+/* ================= WAVE ================= */
+.wave{
+    position:absolute;
+    bottom:-1px;
+    width:100%;
+}
+
+.wave svg{
+    width:100%;
+    height:120px;
+    position: relative;
+    top: 5px;
+}
+
+/* ================= SECTION COMMON ================= */
 section{
-padding:90px 6%;
-text-align:center;
+    padding:90px 6%;
+    text-align:center;
+    background: #e5ecf7;
 }
 
 .section-title{
-font-size:36px;
-margin-bottom:50px;
-color:#2d2a63;
+    font-size:36px;
+    margin-bottom:50px;
+    color:#2d2a63;
 }
 
-/* CARD GRID */
-
+/* ================= CARD GRID ================= */
 .card-container{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:30px;
 }
 
 .card{
-background:white;
-padding:30px;
-border-radius:15px;
-box-shadow:0 8px 20px rgba(0,0,0,0.08);
-transition:0.4s;
+    background:white;
+    padding:30px 25px;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    transition:0.4s;
 }
 
 .card:hover{
-transform:translateY(-10px);
-box-shadow:0 15px 30px rgba(0,0,0,0.15);
+    transform:translateY(-10px);
+    box-shadow:0 15px 30px rgba(0,0,0,0.15);
 }
 
-.icon{
-font-size:40px;
-margin-bottom:10px;
+.card .icon{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    margin-bottom:15px;
+    font-size:20px;
+    color:#2d2a63;
+}
+
+.card p{
+    font-size:14px;
+    color:#555;
+    line-height:1.6;
 }
 
 /* LIVE COUNTERS */
@@ -117,128 +252,317 @@ font-weight:bold;
 color:#6a11cb;
 }
 
-/* CONTACT */
-
+/* contact */
 .contact{
-background:#99B6E3;
+padding:80px 15%;
+text-align:center;
+background-color: #E5ECF7;
 }
 
 form{
 display:flex;
 flex-direction:column;
 gap:15px;
-max-width:450px;
+max-width:400px;
 margin:auto;
 }
 
-input,textarea{
+input, textarea{
 padding:10px;
 border:1px solid #ccc;
 border-radius:5px;
 }
 
 button{
-padding:10px;
-border:none;
 background:#ff4b2b;
 color:white;
+border:none;
+padding:10px;
 border-radius:5px;
+cursor:pointer;
 }
 
-/* FOOTER */
+/* traffic-analytics */
+.traffic-analytics{
+background:#E5ECF7;
+padding:90px 6%;
+}
 
+.chart-container{
+width:100%;
+max-width:900px;
+margin:auto;
+position:relative;
+height:400px;
+}
+
+/* ================= FOOTER ================= */
 footer{
-background:#2d2a63;
-color:white;
-padding:20px;
+    background:#2d2a63;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:992px){
+    .card-container{
+        grid-template-columns:repeat(2,1fr);
+    }
+    .db-btn{
+        margin-bottom:100px;
+    }
+    .hero h1 {
+        margin-top: 100px;
+    }
+}
+
+@media(max-width:768px){
+
+    .navbar ul{
+        display:none;
+    }
+    .navbar ul{
+    position:absolute;
+    top:60px;
+    left:0;
+    width:100%;
+    background:#2d2a63;
+    flex-direction:column;
+    text-align:center;
+    padding:20px 0;
+    display:none;
+}
+
+.navbar ul.active{
+    display:flex;
+}
+
+    .card-container{
+        grid-template-columns:1fr;
+    }
+
+    .section-title{
+        font-size:28px;
+    }
+    .menu-toggle{
+        display:block;
+    }
+    .chart-container{
+        height:300px;
+    }
+    
+}
+
+@media (max-width:480px){
+.chart-container{
+height:250px;
+}
+.section-title{
+font-size:24px;
+}
 }
 
 </style>
 </head>
-
 <body>
 
 <!-- NAVBAR -->
-
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background:#2d2a63;">
 <div class="container">
-
+<img src="logo.png" width="60" class="me-2">
 <a class="navbar-brand d-flex align-items-center" href="#">
-<img src="logo.png" width="60">
 <span>Smart Traffic</span>
 </a>
 
-<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
 <span class="navbar-toggler-icon"></span>
 </button>
 
-<div class="collapse navbar-collapse" id="nav">
+<div class="collapse navbar-collapse" id="navbarNav">
 
 <ul class="navbar-nav ms-auto">
 
-<li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-<li class="nav-item"><a class="nav-link" href="#">Features</a></li>
-<li class="nav-item"><a class="nav-link" href="#">Technology</a></li>
-<li class="nav-item"><a class="nav-link" href="#">Analytics</a></li>
-<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+<li class="nav-item">
+<a class="nav-link" href="#">Home</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#">Features</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#">Technology</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#">Importance</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#">Contact</a>
+</li>
 
 </ul>
 
 </div>
+
 </div>
 </nav>
 
-<!-- HERO -->
+<!-- Carousel -->
 
-<section class="hero">
+<div id="trafficCarousel" class="carousel slide" data-bs-ride="carousel">
+
+<div class="carousel-inner">
+
+<!-- Slide 1 -->
+<div class="carousel-item active" style="background-image:url('https://images.unsplash.com/photo-1502877338535-766e1452684a');">
+
+<div class="overlay"></div>
+
+<div class="carousel-content">
+
+<div class="search-box">
+<input type="text" placeholder="Search Traffic Area...">
+<button>Search</button>
+</div>
 
 <h1>Smart Traffic Management System</h1>
 
-<p>
-AI powered system that monitors traffic, reduces congestion and prioritizes emergency vehicles.
-</p>
+<button class="btn btn-secondary-custom px-4 py-2">View Dashboard</button>
 
-<div>
-<button class="btn btn-primary">View Dashboard</button>
-<button class="btn btn-secondary">Learn More</button>
 </div>
 
+</div>
+
+<!-- Slide 2 -->
+<div class="carousel-item" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d');">
+
+<div class="overlay"></div>
+
+<div class="carousel-content">
+
+<div class="search-box">
+<input type="text" placeholder="Search Traffic Area...">
+<button>Search</button>
+</div>
+
+<h1>Real-Time Traffic Monitoring</h1>
+
+<button class="btn btn-secondary-custom px-4 py-2">Get Details</button>
+
+</div>
+
+</div>
+
+<!-- Slide 3 -->
+<div class="carousel-item" style="background-image:url('https://images.unsplash.com/photo-1494526585095-c41746248156');">
+
+<div class="overlay"></div>
+
+<div class="carousel-content">
+
+<div class="search-box">
+<input type="text" placeholder="Search Traffic Area...">
+<button>Search</button>
+</div>
+
+<h1>Reduce Traffic Congestion</h1>
+
+<button class="btn btn-secondary-custom px-4 py-2">Contact Us</button>
+
+</div>
+
+</div>
+
+</div>
+
+<button class="carousel-control-prev" type="button" data-bs-target="#trafficCarousel" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+
+<button class="carousel-control-next" type="button" data-bs-target="#trafficCarousel" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Smart Traffic Management System</h1>
+    <p>
+        An intelligent system that monitors traffic in real time,
+        optimizes signal timing, and prioritizes emergency vehicles
+        to build smarter and safer cities.
+    </p>
+    <div class="db-btn">
+        <button class="btn btn-primary">View Dashboard</button>
+        <button class="btn btn-secondary">Learn More</button>
+    </div>
+
+    <!-- Wave -->
+    <div class="wave">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#3c1b6e"
+            d="M0,160L80,165.3C160,171,320,181,480,176C640,171,800,149,960,144C1120,139,1280,149,1360,154.7L1440,160L1440,320L0,320Z">
+            </path>
+        </svg>
+    </div>
 </section>
 
 <!-- FEATURES -->
-
 <section>
+    <h2 class="section-title"> Project Features</h2>
+    <div class="card-container">
+        <div class="card">
+            <div class="icon">🚦</div>
+            <h3>Dynamic Signal Control</h3>
+            <p>AI automatically adjusts traffic signals.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🚑</div>
+            <h3>Ambulance Priority</h3>
+            <p>Emergency vehicles get green corridor.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🖥</div>
+            <h3>Live Monitoring</h3>
+            <p>Real-time camera traffic monitoring.</p>
+        </div>
+        <div class="card">
+            <div class="icon">📊</div>
+            <h3>Analytics</h3>
+            <p>Traffic reports and congestion analysis.</p>
+        </div>
+    </div>
+</section>
 
-<h2 class="section-title">Project Features</h2>
-
-<div class="card-container">
-
-<div class="card">
-<div class="icon">🚦</div>
-<h3>Dynamic Signal</h3>
-<p>AI automatically adjusts traffic signals.</p>
-</div>
-
-<div class="card">
-<div class="icon">🚑</div>
-<h3>Ambulance Priority</h3>
-<p>Emergency vehicles get green corridor.</p>
-</div>
-
-<div class="card">
-<div class="icon">📡</div>
-<h3>Live Monitoring</h3>
-<p>Real-time camera traffic monitoring.</p>
-</div>
-
-<div class="card">
-<div class="icon">📊</div>
-<h3>Analytics</h3>
-<p>Traffic reports and congestion analysis.</p>
-</div>
-
-</div>
-
+<!-- TECHNOLOGY -->
+<section style="background:#99b6e3;">
+    <h2 class="section-title"> Tools & Technology</h2>
+    <div class="card-container">
+        <div class="card">
+            <div class="icon">🐍</div>
+            <h3>Python & Flask</h3>
+            <p>Backend framework for handling traffic data and system logic.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🤖</div>
+            <h3>YOLOv8 & OpenCV</h3>
+            <p>AI-based vehicle detection and real-time video processing.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🌐</div>
+            <h3>HTML, CSS, JS</h3>
+            <p>Responsive and interactive frontend technologies.</p>
+        </div>
+        <div class="card">
+            <div class="icon">📈</div>
+            <h3>Chart.js</h3>
+            <p>Beautiful graphs for analyzing traffic patterns.</p>
+        </div>
+    </div>
 </section>
 
 <!-- LIVE TRAFFIC STATUS -->
@@ -273,9 +597,24 @@ AI powered system that monitors traffic, reduces congestion and prioritizes emer
 
 </section>
 
+<!-- SMART TRAFFIC MAP -->
+
+<section style="background:#99B6E3">
+
+<h2 class="section-title">Smart Traffic Map</h2>
+
+<iframe
+id="trafficMap"
+width="100%"
+height="400"
+src="https://maps.google.com/maps?q=Delhi&t=&z=13&ie=UTF8&iwloc=&output=embed">
+</iframe>
+
+</section>
+
 <!-- TRAFFIC ANALYTICS -->
 
-<section>
+<section style="background-color: #E5ECF7;">
 
 <h2 class="section-title">Traffic Analytics</h2>
 
@@ -285,23 +624,9 @@ AI powered system that monitors traffic, reduces congestion and prioritizes emer
 
 </section>
 
-<!-- SMART TRAFFIC MAP -->
-
-<section style="background:#99b6e3">
-
-<h2 class="section-title">Smart Traffic Map</h2>
-
-<iframe
-width="100%"
-height="400"
-src="https://maps.google.com/maps?q=Delhi&t=&z=13&ie=UTF8&iwloc=&output=embed">
-</iframe>
-
-</section>
-
 <!-- DASHBOARD -->
 
-<section>
+<section style="background-color: #99B6E3;">
 
 <h2 class="section-title">Traffic Control Dashboard</h2>
 
@@ -335,37 +660,31 @@ src="https://maps.google.com/maps?q=Delhi&t=&z=13&ie=UTF8&iwloc=&output=embed">
 
 </section>
 
-<!-- CONTACT -->
+<!-- contact -->
+<section id="contact" class="contact">
 
-<section class="contact">
+<h2>Request a Demo</h2>
 
-<h2 class="section-title">Request Demo</h2>
-
-<form>
-
-<input type="text" placeholder="Name">
-
-<input type="email" placeholder="Email">
-
-<textarea placeholder="Message"></textarea>
-
-<button>Submit</button>
-
+<form action="/contact" method="POST">
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<textarea name="message" placeholder="Message"></textarea>
+<button type="submit">Submit</button>
 </form>
 
 </section>
-
 <!-- FOOTER -->
-
 <footer>
-
-© 2026 Smart Traffic Management System
-
+    © 2026 Smart Traffic Management System | Designed for Smart Cities
 </footer>
 
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>   
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
+function toggleMenu(){
+    document.getElementById("navLinks").classList.toggle("active");
+}
 
 /* COUNTER */
 
@@ -417,5 +736,71 @@ options:{responsive:true}
 
 </script>
 
+<script>
+// ================= CONTACT FORM =================
+
+document.querySelector("form").addEventListener("submit", async function(e){
+
+e.preventDefault()
+
+let name = document.querySelector("input[type='text']").value
+let email = document.querySelector("input[type='email']").value
+let message = document.querySelector("textarea").value
+
+await fetch("/contact",{
+method:"POST",
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({
+name:name,
+email:email,
+message:message
+})
+})
+
+alert("Request Submitted")
+
+})
+
+
+// ================= SEARCH TRAFFIC =================
+
+document.querySelectorAll(".search-box button").forEach(btn=>{
+
+btn.addEventListener("click", async function(){
+
+let area = this.parentElement.querySelector("input").value
+
+if(area===""){
+alert("Please enter a city or country")
+return
+}
+
+let res = await fetch("/search",{
+method:"POST",
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({area:area})
+})
+
+let data = await res.json()
+
+if(data.error){
+alert("Area not found in database")
+}else{
+
+document.getElementById("vehicle").innerText = data.vehicles
+document.getElementById("signal").innerText = data.signals
+document.getElementById("emergency").innerText = data.emergency
+document.getElementById("roads").innerText = data.roads
+
+}
+
+document.getElementById("trafficMap").src =
+`https://maps.google.com/maps?q=${area}&t=&z=13&ie=UTF8&iwloc=&output=embed`
+
+})
+
+})
+
+</script>
 </body>
-</html>
+</html> 

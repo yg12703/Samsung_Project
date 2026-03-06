@@ -101,22 +101,39 @@ font-weight:bold;
 margin-bottom:20px;
 }
 
-.search-box{
+/* ROUTE SEARCH */
+
+.route-search{
+background:white;
+padding:70px 6%;
+text-align:center;
+}
+
+.route-container{
 display:flex;
-margin-bottom:20px;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
 }
 
-.search-box input{
-border:none;
+.route-container input{
 padding:12px;
-width:250px;
+width:220px;
+border-radius:8px;
+border:1px solid #ccc;
 }
 
-.search-box button{
-background:#00a8ff;
-border:none;
+.route-container button{
+background:#2d2a63;
 color:white;
-padding:12px 20px;
+border:none;
+padding:12px 25px;
+border-radius:8px;
+transition:0.3s;
+}
+
+.route-container button:hover{
+background:#4a48a8;
 }
 
 .btn-secondary-custom{
@@ -147,6 +164,25 @@ color:white;
     max-width:600px;
     font-size:clamp(14px,2vw,18px);
     margin-bottom:30px;
+}
+
+.hero-img{
+height:650px;
+object-fit:cover;
+filter:brightness(60%);
+}
+
+.hero-text{
+bottom:35%;
+}
+
+.hero-text h1{
+font-size:50px;
+font-weight:700;
+}
+
+.hero-text p{
+font-size:20px;
 }
 
 .btn{
@@ -196,7 +232,7 @@ button.btn.btn-primary:hover{
 
 /* ================= SECTION COMMON ================= */
 section{
-    padding:90px 6%;
+    padding:80px 6%;
     text-align:center;
     background: #e5ecf7;
 }
@@ -247,7 +283,7 @@ section{
 /* LIVE COUNTERS */
 
 .counter{
-font-size:32px;
+font-size:28px;
 font-weight:bold;
 color:#6a11cb;
 }
@@ -370,7 +406,7 @@ font-size:24px;
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background:#2d2a63;">
 <div class="container">
-<img src="logo.png" width="60" class="me-2">
+<img src="{{ url_for('static', filename='images/logo.png') }}" width="60" class="me-2">
 <a class="navbar-brand d-flex align-items-center" href="#">
 <span>Smart Traffic</span>
 </a>
@@ -411,67 +447,44 @@ font-size:24px;
 </nav>
 
 <!-- Carousel -->
+<!-- HERO CAROUSEL -->
 
-<div id="trafficCarousel" class="carousel slide" data-bs-ride="carousel">
+<div id="trafficCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
 <div class="carousel-inner">
 
 <!-- Slide 1 -->
-<div class="carousel-item active" style="background-image:url('https://images.unsplash.com/photo-1502877338535-766e1452684a');">
+<div class="carousel-item active">
 
-<div class="overlay"></div>
+<img src="https://images.unsplash.com/photo-1502877338535-766e1452684a" class="d-block w-100 hero-img">
 
-<div class="carousel-content">
-
-<div class="search-box">
-<input type="text" placeholder="Search Traffic Area...">
-<button>Search</button>
-</div>
-
-<h1>Smart Traffic Management System</h1>
-
-<button class="btn btn-secondary-custom px-4 py-2">View Dashboard</button>
-
+<div class="carousel-caption hero-text">
+<h1>Smart Traffic Management</h1>
+<p>AI-powered traffic control for smarter cities</p>
 </div>
 
 </div>
 
 <!-- Slide 2 -->
-<div class="carousel-item" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d');">
+<div class="carousel-item">
 
-<div class="overlay"></div>
+<img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" class="d-block w-100 hero-img">
 
-<div class="carousel-content">
-
-<div class="search-box">
-<input type="text" placeholder="Search Traffic Area...">
-<button>Search</button>
-</div>
-
-<h1>Real-Time Traffic Monitoring</h1>
-
-<button class="btn btn-secondary-custom px-4 py-2">Get Details</button>
-
+<div class="carousel-caption hero-text">
+<h1>Real-Time Monitoring</h1>
+<p>Analyze traffic flow and reduce congestion</p>
 </div>
 
 </div>
 
 <!-- Slide 3 -->
-<div class="carousel-item" style="background-image:url('https://images.unsplash.com/photo-1494526585095-c41746248156');">
+<div class="carousel-item">
 
-<div class="overlay"></div>
+<img src="https://images.unsplash.com/photo-1494526585095-c41746248156" class="d-block w-100 hero-img">
 
-<div class="carousel-content">
-
-<div class="search-box">
-<input type="text" placeholder="Search Traffic Area...">
-<button>Search</button>
-</div>
-
-<h1>Reduce Traffic Congestion</h1>
-
-<button class="btn btn-secondary-custom px-4 py-2">Contact Us</button>
-
+<div class="carousel-caption hero-text">
+<h1>Emergency Priority</h1>
+<p>Green corridor for ambulances and emergency vehicles</p>
 </div>
 
 </div>
@@ -487,6 +500,19 @@ font-size:24px;
 </button>
 
 </div>
+
+<!-- ROUTE SEARCH SECTION -->
+
+<section class="route-search">
+
+<h2 class="section-title">Find Traffic Route</h2>
+<div class="route-container">
+<input id="fromLocation" placeholder="From City">
+<input id="toLocation" placeholder="To City">
+<button onclick="searchRoute()">Search Route</button>
+</div>
+
+</section>
 
 <!-- HERO -->
 <section class="hero">
@@ -718,88 +744,157 @@ animate("roads",0,14,2000);
 
 /* CHART */
 
-const ctx=document.getElementById('trafficChart');
+// const ctx=document.getElementById('trafficChart');
 
-new Chart(ctx,{
+// new Chart(ctx,{
+// type:'line',
+// data:{
+// labels:['6AM','9AM','12PM','3PM','6PM','9PM'],
+// datasets:[{
+// label:'Traffic Density',
+// data:[30,90,60,70,110,80],
+// borderWidth:3,
+// fill:true
+// }]
+// },
+// options:{responsive:true}
+// });
+
+let trafficChart;
+
+function loadChart(city){
+
+fetch("/traffic-chart",{
+method:"POST",
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({city:city})
+})
+.then(res=>res.json())
+.then(data=>{
+
+let ctx=document.getElementById("trafficChart").getContext("2d")
+
+if(trafficChart){
+trafficChart.destroy()
+}
+
+trafficChart=new Chart(ctx,{
 type:'line',
 data:{
-labels:['6AM','9AM','12PM','3PM','6PM','9PM'],
+labels:data.labels,
 datasets:[{
-label:'Traffic Density',
-data:[30,90,60,70,110,80],
+label:`Traffic Density - ${city}`,
+data:data.values,
 borderWidth:3,
+borderColor:"#6a11cb",
+backgroundColor:"rgba(106,17,203,0.2)",
 fill:true
 }]
 },
 options:{responsive:true}
-});
+})
+
+})
+
+}
 
 </script>
 
 <script>
 // ================= CONTACT FORM =================
 
-document.querySelector("form").addEventListener("submit", async function(e){
+document.querySelector("form").addEventListener("submit", function(e){
 
 e.preventDefault()
 
-let name = document.querySelector("input[type='text']").value
-let email = document.querySelector("input[type='email']").value
-let message = document.querySelector("textarea").value
+let name = document.querySelector("input[name='name']").value
+let email = document.querySelector("input[name='email']").value
+let message = document.querySelector("textarea[name='message']").value
 
-await fetch("/contact",{
-method:"POST",
-headers:{'Content-Type':'application/json'},
-body:JSON.stringify({
-name:name,
-email:email,
-message:message
+let contactData = {
+    name: name,
+    email: email,
+    message: message
+}
+
+// get existing messages
+let messages = JSON.parse(sessionStorage.getItem("messages")) || []
+
+messages.push(contactData)
+
+// store again
+sessionStorage.setItem("messages", JSON.stringify(messages))
+
+alert("Request Submitted!")
+
 })
+
+/* LOAD INITIAL TRAFFIC DATA */
+
+fetch("/traffic-data")
+.then(res => res.json())
+.then(data => {
+
+document.getElementById("vehicle").innerHTML=data.vehicles
+document.getElementById("signal").innerHTML=data.signals
+document.getElementById("emergency").innerHTML=data.emergency
+document.getElementById("roads").innerHTML=data.roads
+loadChart("Delhi")
+
 })
-
-alert("Request Submitted")
-
-})
-
 
 // ================= SEARCH TRAFFIC =================
 
-document.querySelectorAll(".search-box button").forEach(btn=>{
+/* SEARCH ROUTE */
 
-btn.addEventListener("click", async function(){
+async function searchRoute(){
 
-let area = this.parentElement.querySelector("input").value
+let from=document.getElementById("fromLocation").value
+let to=document.getElementById("toLocation").value
 
-if(area===""){
-alert("Please enter a city or country")
+if(from=="" || to==""){
+alert("Enter both From and To location")
 return
 }
 
-let res = await fetch("/search",{
+/* UPDATE GOOGLE MAP ROUTE */
+
+document.getElementById("trafficMap").src=
+`https://www.google.com/maps?q=${from}+to+${to}&output=embed`
+
+
+/* FETCH TRAFFIC DATA */
+
+let res=await fetch("/search",{
+
 method:"POST",
+
 headers:{'Content-Type':'application/json'},
-body:JSON.stringify({area:area})
+
+body:JSON.stringify({area:to})
+
 })
 
-let data = await res.json()
+let data=await res.json()
 
 if(data.error){
-alert("Area not found in database")
-}else{
 
-document.getElementById("vehicle").innerText = data.vehicles
-document.getElementById("signal").innerText = data.signals
-document.getElementById("emergency").innerText = data.emergency
-document.getElementById("roads").innerText = data.roads
+alert("Area not found")
+
+return
 
 }
 
-document.getElementById("trafficMap").src =
-`https://maps.google.com/maps?q=${area}&t=&z=13&ie=UTF8&iwloc=&output=embed`
+document.getElementById("vehicle").innerText=data.vehicles
+document.getElementById("signal").innerText=data.signals
+document.getElementById("emergency").innerText=data.emergency
+document.getElementById("roads").innerText=data.roads
+loadChart(to)
 
-})
+}
 
-})
+// document.getElementById("trafficMap").src =
+// `https://maps.google.com/maps?q=${area}&t=&z=13&ie=UTF8&iwloc=&output=embed`
 
 </script>
 </body>

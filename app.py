@@ -56,6 +56,30 @@ def search():
 
     return jsonify({"error":"Area not found"})
 
+@app.route("/traffic-chart", methods=["POST"])
+def traffic_chart():
+
+    data = request.get_json()
+    city = data.get("city")
+
+    chart_data = {
+
+        "Delhi": [40,120,90,110,150,130],
+
+        "Mumbai": [60,140,100,120,160,150],
+
+        "Bangalore": [50,110,80,100,140,120],
+
+        "London": [30,70,60,80,90,85]
+
+    }
+
+    values = chart_data.get(city, [20,40,30,35,50,45])
+
+    return jsonify({
+        "labels":["6AM","9AM","12PM","3PM","6PM","9PM"],
+        "values": values
+    })
 
 # CONTACT FORM
 @app.route("/contact", methods=["POST"])
