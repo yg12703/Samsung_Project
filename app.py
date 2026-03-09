@@ -1,13 +1,41 @@
 from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, redirect, session, url_for
 import sqlite3
 
 app = Flask(__name__, template_folder="templates")
+app.secret_key = "smarttrafficsecret"
 
 # HOME PAGE
 @app.route("/")
 def home():
     return render_template("index.html")
 
+# Admin Login Route
+@app.route("/admin-login", methods=["GET","POST"])
+def admin_login():
+
+    if request.method == "POST":
+
+        username = request.form["username"]
+        password = request.form["password"]
+
+        if username == "admin" and password == "admin123":
+
+            session["admin"] = True
+            return redirect("/graph-dashboard")
+
+        else:
+            return "Invalid Login"
+
+    return render_template("login.html")
+
+# Add Logout
+@app.route("/logout")
+def logout():
+
+    session.pop("admin", None)
+
+    return redirect("/")
 
 # TRAFFIC DATA API
 @app.route("/traffic-data")
@@ -80,6 +108,10 @@ def traffic_chart():
         "labels":["6AM","9AM","12PM","3PM","6PM","9PM"],
         "values": values
     })
+# dashboard
+@app.route("/graph-dashboard")
+def graph_dashboard():
+    return render_template("traffic_dashboard.html")
 
 # CONTACT FORM
 @app.route("/contact", methods=["POST"])
@@ -102,6 +134,9 @@ def contact():
 
     return "Message Saved"
 
+@app.route("/learnMore")
+def learnMore():
+    return render_template("learnMore.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

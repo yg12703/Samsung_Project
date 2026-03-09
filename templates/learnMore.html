@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       .learn-section{
+min-height:100vh;
+background-image:url("https://images.unsplash.com/photo-1506521781263-d8422e82f27a");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.overlay{
+background:rgba(0,0,0,0.75);
+width:100%;
+height:100%;
+padding:80px 10%;
+text-align:center;
+color:white;
+}
+
+.overlay h2{
+font-size:42px;
+margin-bottom:20px;
+}
+
+.overlay p{
+max-width:700px;
+margin:auto;
+margin-bottom:60px;
+font-size:18px;
+line-height:1.6;
+}
+
+.features{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:30px;
+}
+
+.card{
+background:white;
+color:#333;
+width:220px;
+padding:25px;
+border-radius:12px;
+transition:0.4s;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card img{
+width:60px;
+margin-bottom:15px;
+}
+
+.card:hover{
+transform:translateY(-12px) scale(1.05);
+background:#5b21ff;
+color:white;
+}
+
+/* -------- Tablet -------- */
+
+@media (max-width:992px){
+
+.overlay h2{
+font-size:34px;
+}
+
+.overlay p{
+font-size:16px;
+}
+
+.card{
+width:45%;
+}
+
+}
+
+/* -------- Mobile -------- */
+
+@media (max-width:600px){
+
+.overlay{
+padding:60px 20px;
+}
+
+.overlay h2{
+font-size:28px;
+}
+
+.overlay p{
+font-size:15px;
+margin-bottom:40px;
+}
+
+.features{
+gap:20px;
+}
+
+.card{
+width:100%;
+}
+
+}
+    </style>
+</head>
+<body>
+    <section id="learn-more" class="learn-section">
+
+<div class="overlay">
+
+<h2>Smart Traffic Management System</h2>
+
+<p>
+The Smart Traffic Management System uses real-time monitoring, intelligent
+algorithms and automated signal control to reduce congestion, improve road
+safety and provide faster movement for emergency vehicles.
+</p>
+
+<div class="features">
+
+<div class="card">
+<img src="https://cdn-icons-png.flaticon.com/512/854/854878.png">
+<h3>Traffic Monitoring</h3>
+<p>Live camera based monitoring to detect congestion and traffic density.</p>
+</div>
+
+<div class="card">
+<img src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png">
+<h3>Smart Signals</h3>
+<p>AI based signals adjust timing according to vehicle load.</p>
+</div>
+
+<div class="card">
+<img src="https://cdn-icons-png.flaticon.com/512/2967/2967350.png">
+<h3>Emergency Priority</h3>
+<p>Ambulances and fire trucks get automatic green signals.</p>
+</div>
+
+<div class="card">
+<img src="https://cdn-icons-png.flaticon.com/512/684/684908.png">
+<h3>Live Traffic Map</h3>
+<p>Real-time traffic visualization using digital maps.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+<script>
+    document.querySelector(".learn-btn").onclick = function(){
+    document.getElementById("learn-more").scrollIntoView({
+        behavior:"smooth"
+    });
+};
+</script>
+</body>
+</html>
